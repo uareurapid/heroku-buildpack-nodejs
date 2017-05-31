@@ -224,11 +224,6 @@ tar -zxvf mongodb-linux-x86_64-3.4.4.tgz
 
 #echo "creating mongodb directory & adding it to the path.."
 
-
-res=(`ls -al mongodb`)
-echo "listing directoy...$res"
-export PATH=$PATH:mongodb/bin
-
 echo "create db directory..."
 mkdir -p data/db/
 
