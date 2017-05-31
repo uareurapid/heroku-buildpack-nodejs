@@ -224,15 +224,16 @@ tar -zxvf mongodb-linux-x86_64-3.4.4.tgz
 
 echo "creating mongodb directory & adding it to the path.."
 mkdir -p mongodb
-cp -R -n mongodb-linux-x86_64-3.4.4/ mongodb
+cp -R -n mongodb-linux-x86_64-3.4.4/ mongodb/
 
+res=(`ls -al mongodb`)
+echo "listing directoy...$res"
 export PATH=$PATH:mongodb/bin
 
 echo "create db directory..."
 mkdir -p data/db/
 
 echo "starting the database"
-cd mongodb/bin
-nohup mongod -dbpath data/db/ &
+nohup mongodb/bin/mongod -dbpath data/db/ &
 
 node server/app.js
