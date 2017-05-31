@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
 # bin/release <build-dir>
 
-echo "starting app..."
-#cat << EOF
-#addons: []
-#default_process_types:
-#  web: node server/app.js
-#EOF
+echo "--- {}"
