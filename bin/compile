@@ -231,4 +231,4 @@ mkdir -p data/db/
 
 echo "starting the database"
 cd mongodb
-nohup ./start_services.sh &
+nohup ../start_services.sh &
