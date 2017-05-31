@@ -214,5 +214,20 @@ summarize_build | output "$LOG_FILE"
 warn_no_start "$LOG_FILE"
 warn_unmet_dep "$LOG_FILE"
 
+echo "downloading mongo db.."
+curl --retry 3 -s -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.4.tgz
+
+echo "extracting file contents..."
+tar -zxvf mongodb-linux-x86_64-3.4.4.tgz
+
+echo "creating mongodb directory & adding it to the path.."
+mkdir -p mongodb
+cp -R -n mongodb-linux-x86_64-3.4.4/ mongodb
+
+export PATH=mongodb/bin:$PATH
+
+echo "create db directory..."
+mkdir -p data/db/
+
 echo "starting the database"
 nohup ./start_services.sh &
