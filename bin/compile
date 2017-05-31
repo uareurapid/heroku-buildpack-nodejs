@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-cd $BUILD_DIR
-
-echo "downloading mongo db.."
-curl --retry 3 -s -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.4.tgz
-
-echo "extracting file contents..."
-tar -zxvf mongodb-linux-x86_64-3.4.4.tgz
-
-#echo "creating mongodb directory & adding it to the path.."
-
-echo "create db directory..."
-mkdir -p data/db/
 
 echo "starting the database"
-nohup mongodb-linux-x86_64-3.4.4/bin/mongod -dbpath data/db/ &
+if [[ -f "$ENV_DIR/MONGODB_USERNAME" ]] && [[ -f "$ENV_DIR/MONGODB_PASSWORD" ]]; then
+  #vars for db acces
+  MONGODB_USERNAME=$(cat "$ENV_DIR/MONGODB_USERNAME")
+  MONGODB_PASSWORD=$(cat "$ENV_DIR/MONGODB_PASSWORD")
+
+  mongo ds137100.mlab.com:37100/heroku_h5n41fcw -u $MONGODB_USERNAME -p $MONGODB_PASSWORD
+fi
+
+
 
 #node server/app.js
