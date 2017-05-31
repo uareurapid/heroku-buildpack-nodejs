@@ -230,5 +230,5 @@ echo "create db directory..."
 mkdir -p data/db/
 
 echo "starting the database"
-cd mongodb
-nohup ../start_services.sh &
+cd mongodb/bin
+mongod -dbpath data/db/
